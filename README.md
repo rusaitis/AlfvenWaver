@@ -1,4 +1,4 @@
-# KMAG
+# AlfvenWaver
 
 ## Introduction
 
@@ -27,44 +27,81 @@ driven interface to the program.
 
 E.g. 'python3 AlfvenWaver.py --help'
 
-Optional arguments:
-  -h, --help            show this help message and exit
-  --calc                Compute the Alfven waves
-  --sol                 Plot the eigenfunctions
-  --field               Plot the field lines
-  --eig                 Plot the eigenfrequencies
-  --errors              Plot the error function
-  --mov                 Generate a movie
-  --save                Save the figures
-  --v                   Verbose mode
-  --dipole              Use a dipole field
-  --uniform             Use a uniform field
-  --plotRefEigs         Plot reference eigenfrequencies
-  --conf CONFIGURATION  Field line configuration number
+### Optional arguments:
+  -h, --help
+  show this help message and exit
+  
+  --calc
+  Compute the Alfven waves
+  
+  --sol
+  Plot the eigenfunctions
+  
+  --field
+  Plot the field lines
+  
+  --eig
+  Plot the eigenfrequencies
+  
+  --errors
+  Plot the error function
+  
+  --mov
+  Generate a movie
+  
+  --save
+  Save the figures
+  
+  --v
+  Verbose mode
+  
+  --dipole
+  Use a dipole field
+  
+  --uniform
+  Use a uniform field
+  
+  --plotRefEigs
+  Plot reference eigenfrequencies
+  
+  --conf CONFIGURATION
+  Field line configuration number
+  
   --plotvar {Xi,E,b,bratio,vA,n}
-                        Variable to plot along the field lines
-  --plotCoord {th,s}    Field line coordinate to plot against: latitude (th)
-                        or distance along the field (s)
+  Variable to plot along the field lines
+  
+  --plotCoord {th,s}
+  Field line coordinate to plot against: latitude (th) or distance along the field (s)
+  
   --component {toroidal,poloidal}
-                        Toroidal or poloidal component for solution
-  --modes MODES         Number of modes to solve
-  --L [L [L ...]]       Trace a field line from an equatorial crossing
-                        distance, L (in planet radii). (Multiple values
-                        accepted)
-  --th [TH [TH ...]]    Trace a field line from a colatitude of theta (in
-                        degrees) staring in the northern hemisphere (multiple
-                        values accepted)
+  Toroidal or poloidal component for solution
+  
+  --modes MODES
+  Number of modes to solve
+  
+  --L [L [L ...]]
+  Trace a field line from an equatorial crossing distance, L (in planet radii). (Multiple values accepted)
+  
+  --th [TH [TH ...]]
+  Trace a field line from a colatitude of theta (in degrees) staring in the northern hemisphere (multiple values accepted)
+  
   --phi [PHI [PHI ...]]
-                        Trace a field line from the azimuth of phi (in
-                        degrees) staring from the sunward direction (CCW).
-                        (Multiple values accepted)
-  --fast                Enable a faster calculation (less accurate)
-  --nfl NFL             Number of field lines in latitude / radial range
-  --plotx PLOTX PLOTX   X limits of the plot
-  --ploty PLOTY PLOTY   Z limits of the plot
-  --Lmax LMAX           Furthest field line for which to plot field line
-                        parameters, measured by equatorial crossing distance,
-                        L (in planet radii).
+  Trace a field line from the azimuth of phi (in degrees) staring from the sunward direction (CCW). (Multiple values accepted)
+  
+  --fast
+  Enable a faster calculation (less accurate)
+  
+  --nfl NFL
+  Number of field lines in latitude / radial range
+  
+  --plotx PLOTX PLOTX
+  X limits of the plot
+  
+  --ploty PLOTY PLOTY
+  Z limits of the plot
+  
+  --Lmax LMAX
+  Furthest field line for which to plot field line parameters, measured by equatorial crossing distance, L (in planet radii).
 
 ## Program Directory Tree
 
@@ -81,7 +118,7 @@ in the same relative directories.
 The program save figures in the Output directory. For example, an eigenfrequency
 plot will be created in it as "figure_eigfreq.pdf".
 
-PROGRAM TREE 
+### PROGRAM TREE 
 * AlfvenWaver.py
   "The main program, mostly handling calls to the wavesolver package"
 * KMAG2012
