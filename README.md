@@ -82,40 +82,40 @@ The program save figures in the Output directory. For example, an eigenfrequency
 plot will be created in it as "figure_eigfreq.pdf".
 
 PROGRAM TREE 
-├── AlfvenWaver.py
-│   "The main program, mostly handling calls to the wavesolver package"
-├── KMAG2012
-│   ├── KMAG2012.f
-│   │   "KMAG Saturn Magnetic Field Model"
-│   └── README.md
-├── KMAGhelper
-│   ├── KMAGtracer.f
-│   │   "Field line tracer for the KMAG model, processed by KmagFunction.py"
-│   └── KmagFunctions.py
-│       "Python functions to communicate with the KMAG model"
-├── Output
-│   └── figure_eigfreq.pdf
-│       "An example figure produced after running the program"
-├── README.md
-└── wavesolver
-    ├── configurations.py
-    │   "Basic field line, PDE solver, and model parameters"
-    ├── fieldline.py
-    │   "Field line class and associated functions to store field line data"
-    ├── helperFunctions.py
-    │   "Miscellaneous general-use functions"
-    ├── io.py
-    │   "Input / Output functions"
-    ├── linalg.py
-    │   "Linear Algebra"
-    ├── model.py
-    │   "Plasma density models, PDE functions, and dipole field model"
-    ├── plot.py
-    │   "Plotting routines"
-    ├── shoot.py
-    │   "Shooting Method PDE solver"
-    └── sim.py
-        "Simulation class for storing all relevant parameters for calculations"
+* AlfvenWaver.py
+  "The main program, mostly handling calls to the wavesolver package"
+* KMAG2012
+    * KMAG2012.f
+      "KMAG Saturn Magnetic Field Model"
+    * README.md
+* KMAGhelper
+  * KMAGtracer.f
+    "Field line tracer for the KMAG model, processed by KmagFunction.py"
+  * KmagFunctions.py
+    "Python functions to communicate with the KMAG model"
+* Output
+  * figure_eigfreq.pdf
+  "An example figure produced after running the program"
+* README.md
+* wavesolver
+  * configurations.py
+    "Basic field line, PDE solver, and model parameters"
+  * fieldline.py
+    "Field line class and associated functions to store field line data"
+  * helperFunctions.py
+    "Miscellaneous general-use functions"
+  * io.py
+    "Input / Output functions"
+  * linalg.py
+    "Linear Algebra"
+  * model.py
+    "Plasma density models, PDE functions, and dipole field model"
+  * plot.py
+    "Plotting routines"
+  * shoot.py
+    "Shooting Method PDE solver"
+  * sim.py
+    "Simulation class for storing all relevant parameters for calculations"
 
 ## Example
 
@@ -167,7 +167,7 @@ following (bash) shell script from the terminal in the main code folder.
 Note: add a --fast flag to compute field lines and eigenfrequencies more 
 quickly (sucrifices accuracy).
 
-###Figure 1a.
+### Figure 1a.
 Color plot of the plasma density (Bagenal & Delamere, 2011) in Saturn's magnetic
 field model (Khurana et al., 2016).
 ```bash
@@ -175,7 +175,7 @@ python3 AlfvenWaver.py --field --L -24 24 --nfl 60 --plotx -20 20 --ploty -7 7
 --plotvar n
 ```
 
-###Figure 1b.
+### Figure 1b.
 Color plot of the Alfven velocity (Bagenal & Delamere, 2011) in Saturn's 
 magnetic field model (Khurana et al., 2016).
 ```bash
@@ -183,7 +183,7 @@ python3 AlfvenWaver.py --field --L -24 24 --nfl 60 --plotx -20 20 --ploty -7 7
 --plotvar vA
 ```
 
-###Figure 2a and Figure 2b.
+### Figure 2a and Figure 2b.
 The wave electric field, E, for the first four harmonics of a field line with
 an equatorial crossing distance of 19 RS, each normalized to a maximum arbitrary
 amplitude of 1. 
@@ -191,7 +191,7 @@ amplitude of 1.
 python3 AlfvenWaver.py --calc --sol --L 19 --modes 4 --fast
 ```
 
-###Figure 2c
+### Figure 2c.
 Field displacement, Xi, normalized to a maximum arbitrary amplitude of 1, for
 the first four harmonics, shown separately along four different field lines with
 equatorial crossing distances of 6, 11, 14, and 19 RS.
@@ -200,7 +200,7 @@ python3 AlfvenWaver.py --calc --field --plotvar Xi  --modes 4 --fast
 --L 6 11 14 19 --plotx -2 28  --ploty -7 7
 ```
 
-###Figure 3a
+### Figure 3a.
 Eigenfrequencies for the first 6 toroidal (solid) and poloidal (dashed) modes
 for varying invariant latitudes of field lines in the day side of Saturn’s
 magnetosphere. The two figures are combined in the paper.
@@ -212,7 +212,7 @@ python3 AlfvenWaver.py --calc --eig --fast --th 15 30 --nfl 20 --modes 6
 --component poloidal --phi 0
 ```
 
-###Figure 3b
+### Figure 3b.
 Eigenfrequencies for the first 6 toroidal (solid) and poloidal (dashed) modes
 for varying invariant latitudes of field lines in the night side of Saturn’s
 magnetosphere. The two figures are combined in the paper.
@@ -224,7 +224,7 @@ python3 AlfvenWaver.py --calc --eig --fast --th 16 30 --nfl 20 --modes 6
 --component poloidal --phi 180
 ```
 
-###Figure 4a and Figure 4b 
+### Figure 4a and Figure 4b.
 A comparison of field lines mapped from the same equatorial positions for a
 dipole (a) and a realistic field model (b). 
 ```bash
@@ -232,7 +232,7 @@ python3 AlfvenWaver.py --field --L 4 20 --nfl 6 --plotx -2 21 --ploty -8 8 --dip
 python3 AlfvenWaver.py --field --L 4 20 --nfl 6 --plotx -2 21 --ploty -8 8
 ```
 
-###Figure 4c and Figure 4d
+### Figure 4c and Figure 4d.
 The respective field line eigenfrequencies of the first four modes for the
 dipole (c) and a realistic field model (d).
 ```bash
