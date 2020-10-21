@@ -2,7 +2,7 @@
 
 ## Introduction
 
-AlfvenWaver is a command-line interfaced program package that is aimed at
+**AlfvenWaver** is a command-line interfaced program package that is aimed at
 computing shear Alven wave resonances along planetary magnetic field lines.
 
 Currently, it is using a package called WaveSolver, which is solely
@@ -25,82 +25,85 @@ Windows. A newer release will address this.
 Pass -h or --help argument in the terminal to get a help with the command-line
 driven interface to the program.
 
-E.g. 'python3 AlfvenWaver.py --help'
+For example, run the following in Bash:
+```bash
+python3 AlfvenWaver.py --help
+```
 
 ### Optional arguments:
-  -h, --help
+  **-h, --help**
   show this help message and exit
   
-  --calc
+  **--calc**
   Compute the Alfven waves
   
-  --sol
+  **--sol**
   Plot the eigenfunctions
   
-  --field
+  **--field**
   Plot the field lines
   
-  --eig
+  **--eig**
   Plot the eigenfrequencies
   
-  --errors
+  **--errors**
   Plot the error function
   
-  --mov
+  **--mov**
   Generate a movie
   
-  --save
+  **--save**
   Save the figures
   
-  --v
+  **--v**
   Verbose mode
   
-  --dipole
+  **--dipole**
   Use a dipole field
   
-  --uniform
+  **--uniform**
   Use a uniform field
   
-  --plotRefEigs
+  **--plotRefEigs**
   Plot reference eigenfrequencies
   
-  --conf CONFIGURATION
+  **--conf CONFIGURATION**
   Field line configuration number
   
-  --plotvar {Xi,E,b,bratio,vA,n}
+  **--plotvar {Xi,E,b,bratio,vA,n}**
   Variable to plot along the field lines
   
-  --plotCoord {th,s}
+  **--plotCoord {th,s}**
   Field line coordinate to plot against: latitude (th) or distance along the field (s)
   
-  --component {toroidal,poloidal}
+  **--component {toroidal,poloidal}**
   Toroidal or poloidal component for solution
   
-  --modes MODES
+  **--modes MODES**
   Number of modes to solve
   
-  --L [L [L ...]]
+  **--L [L [L ...]]**
   Trace a field line from an equatorial crossing distance, L (in planet radii). (Multiple values accepted)
   
-  --th [TH [TH ...]]
+  **--th [TH [TH ...]]**
   Trace a field line from a colatitude of theta (in degrees) staring in the northern hemisphere (multiple values accepted)
   
-  --phi [PHI [PHI ...]]
+  **--phi [PHI [PHI ...]]**
   Trace a field line from the azimuth of phi (in degrees) staring from the sunward direction (CCW). (Multiple values accepted)
   
-  --fast
+  **--fast**
   Enable a faster calculation (less accurate)
   
-  --nfl NFL
+  **--nfl NFL**
   Number of field lines in latitude / radial range
   
-  --plotx PLOTX PLOTX
+  **--plotx PLOTX PLOTX**
   X limits of the plot
   
-  --ploty PLOTY PLOTY
+  **--ploty PLOTY PLOTY**
   Z limits of the plot
   
-  --Lmax LMAX
+  **--Lmax LMAX**
   Furthest field line for which to plot field line parameters, measured by equatorial crossing distance, L (in planet radii).
 
 ## Program Directory Tree
