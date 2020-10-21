@@ -3,10 +3,10 @@
 ## Introduction
 
 **AlfvenWaver** is a command-line interfaced program package that is aimed at
-computing shear Alven wave resonances along planetary magnetic field lines.
+computing shear Alfvén wave resonances along planetary magnetic field lines.
 
 Currently, it is using a package called WaveSolver, which is solely
-focused on solving Alfven standing modes along magnetic field lines, and a
+focused on solving Alfvén standing modes along magnetic field lines, and a
 realistic Saturn magnetic field model, KMAG.
 
 ## Installation
