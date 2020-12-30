@@ -1,0 +1,2 @@
+    ETime(sec)         BY_IMF         BZ_IMF             Dp       IN_COORD      OUT_COORD        COMMENT     TRACE(Y/N)         CARSPH           STEP
+    1483228800           -0.2            0.1          0.017            DIS            DIS           KMAG              Y            CAR           0.01

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-KMAG is a global magnetic field of the Saturn’s field (Khurana et al., 2006) that includes modules that specify (1) the internal spherical harmonic field, (2) the ring current and the magnetotail current system, (3) the field from the radial current system which reinforces corotation on the outflowing plasma, (4) the shielding fields from an axially symmetric but hinged magnetopause and (5) the interconnection magnetic field from the solar wind IMF. The current sheet field is based on models of disk-shaped current sheets by Tsyganenko and Peredo (1994). The tilt, and hinging of the current sheet is based on the general deformation technique of Tsyganenko (1998, 2002a, 2002b). The shielding fields are derived using a model of the magnetopause by Arridge et al. (2006) constructed from magnetopause crossings observed by both Cassini and Voyager. Saturn’s internal field uses magnetic moments derived from the Cassini Saturn Orbital Insertion (SOI) measurements (Dougherty, 2005). KMAG is based on a previous Euler-potential model of Jupter's magnetospheric field (Khurana, 1997).
+KMAG is a global magnetic field of the Saturn’s field (Khurana et al., 2006) that includes modules that specify (1) the internal spherical harmonic field, (2) the ring current and the magnetotail current system, (3) the field from the radial current system which reinforces corotation on the outflowing plasma, (4) the shielding fields from an axially symmetric but hinged magnetopause and (5) the interconnection magnetic field from the solar wind IMF. The current sheet field is based on models of disk-shaped current sheets by Tsyganenko and Peredo (1994). The tilt, and hinging of the current sheet is based on the general deformation technique of Tsyganenko (1998, 2002a, 2002b). The shielding fields are derived using a model of the magnetopause by Arridge et al. (2006) constructed from magnetopause crossings observed by both Cassini and Voyager. Saturn’s internal field uses magnetic moments derived from the Cassini Saturn Orbital Insertion (SOI) measurements (Dougherty, 2005). KMAG is based on a previous Euler-potential model of Jupiter's magnetospheric field (Khurana, 1997).
 
 ## Installation
 
@@ -45,9 +45,9 @@ CALL KMAG(TIME,EPOCH,R,THETA,PHI,RLT,BY_IMF,BZ_IMF,BRM,BTM,BPM,Dp)
 ```
 
 In order to compile and run the model from within Python, you can use the
-'os' module. For example, if your custom Fortran code is called
-'KMAG_pipe.f', you can pass the following commands to compile and run the
-code, assuming 'KMAG2012.f' is in the same directory, and you have a
+'os' module. For example, if your custom Fortran code interacting with KMAG
+is called 'KMAG_pipe.f', you can pass the following commands to compile and
+run the code, assuming 'KMAG2012.f' is in the same directory, and you have a
 gfortran compiler installed:
 
 ```python

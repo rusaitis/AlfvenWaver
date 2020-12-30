@@ -50,7 +50,7 @@ if __name__ == "__main__":
                         action='store_true', help='Plot the eigenfrequencies')
     parser.add_argument('--errors', dest='plotErrorFunc',
                         action='store_true', help='Plot the error function')
-    parser.add_argument('--mov', dest='movie',
+    parser.add_argument('--movie', dest='movie',
                         action='store_true', help='Generate a movie')
     parser.add_argument('--save', dest='save',
                         action='store_true', help='Save the figures')
@@ -111,6 +111,7 @@ if __name__ == "__main__":
                               + ' field line parameters, measured by equatorial'
                               + ' crossing distance, L (in planet radii).'))
     args = parser.parse_args()
+
     # --------------------------------------------------------------------------
 
     # Set up the output folder and other plotting parameters
@@ -123,7 +124,7 @@ if __name__ == "__main__":
                   plotRefEigs=args.plotRefEigs)
 
     # Delete old *.png files in the output directory
-    deleteFiles(ioconfig.path, fileformat='.pdf')
+    # deleteFiles(ioconfig.path, fileformat='.pdf')
 
     # Load Saturn configuration (browse configurations.py for more options)
     SIM = loadsim(configSaturnNominal)
@@ -146,6 +147,7 @@ if __name__ == "__main__":
 
     # Batches are used for changing one or more parameters between similar sets
     batches = batchNominal  # DEFAULT: no batches (nominal)
+    batches = batchL
     SIMSbatch = []
     fieldlinesbatch = []
 
@@ -156,6 +158,8 @@ if __name__ == "__main__":
     for batch_n in range(0, len(batches)):
         # Update the simulation parameters with the new batch parameters
         SIM.update(batches[batch_n])
+        SIM.flconfig = [batches[batch_n]]
+        # SIM.config.update(batches[batch_n])
 
         if len(batches) > 1:
             print('Batch id: ', batch_n)
@@ -216,13 +220,17 @@ if __name__ == "__main__":
 
                 # Plot the eigenfunctions
                 if args.plotSolutions:
-                    plotSolutionSubplots(SIMS,
-                                         fieldlines,
-                                         ioconfig,
-                                         plotBG='vA'
-                                         )
+                    # plotSolutionSubplots(SIMS,
+                                         # fieldlines,
+                                         # ioconfig,
+                                         # plotBG='vA'
+                                         # )
                     # plotSolutionsPub(SIM, fig, ax, ioconfig, plotVar='b')
-                    # plotSubplots(SIMS, fieldlines, ioconfig)
+                    plotSubplots(SIMS,
+                                 fieldlines,
+                                 ioconfig,
+                                 plotData=args.plotvar
+                                 )
 
         # Plot field lines and other data like density or Alfven velocity
         if args.plotFieldLines:

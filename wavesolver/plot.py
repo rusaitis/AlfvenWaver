@@ -1157,23 +1157,23 @@ def plotConfiguration(SIMS,
     labels = []
     custom_lines = []
 
-    if SIM.solutions:
-        for n, fieldline in enumerate(fieldlines):
-            SIM = SIMS[n]
-            eigs_sorted = []
-            Llist, lengthlist, LATlist, eigs_sorted = extractEigenfrequencies(np.atleast_1d(SIM))  
-            period_string = 'm = %d,\n$L = $%2.1f $R_S$,\n$T = $%3.0f min' % (n+1, Llist[0], 1./(eigs_sorted[n][0]*1E-3)/60.)
-            period_string = 'm = %d' % (n+1)
-            labels.append(period_string)
-            custom_lines.append(Line2D([0], [0], color=cxkcd[n], ls='-', lw=4.5, alpha=1.))
+    # if SIM.solutions:
+    #     for n, fieldline in enumerate(fieldlines):
+    #         SIM = SIMS[n]
+    #         eigs_sorted = []
+    #         Llist, lengthlist, LATlist, eigs_sorted = extractEigenfrequencies(np.atleast_1d(SIM))  
+    #         period_string = 'm = %d,\n$L = $%2.1f $R_S$,\n$T = $%3.0f min' % (n+1, Llist[0], 1./(eigs_sorted[n][0]*1E-3)/60.)
+    #         period_string = 'm = %d' % (n+1)
+    #         labels.append(period_string)
+    #         custom_lines.append(Line2D([0], [0], color=cxkcd[n], ls='-', lw=4.5, alpha=1.))
 
-    # leg = ax.legend(custom_lines2, ['m=1', 'm=2', 'm=3', 'm=4'], handlelength=1.2, loc="upper right", borderaxespad=1.2, prop={'size': 13}, framealpha=0.08, ncol=1)
-    leg = ax.legend(custom_lines, labels, handlelength=1.1, labelspacing=1.6, loc="upper right", borderaxespad=1.2, prop={'size': 12}, framealpha=0.01, ncol=1)
-    for text in leg.get_texts():
-        plt.setp(text, color = color)
-    # Color the legend text to match the line color
-    for handle, label in zip(leg.legendHandles, leg.texts):
-        label.set_color(handle.get_color())
+    # leg = ax.legend(custom_lines, labels, handlelength=1.1, labelspacing=1.6, loc="upper right", borderaxespad=1.2, prop={'size': 12}, framealpha=0.01, ncol=1)
+    # for text in leg.get_texts():
+    #     plt.setp(text, color = color)
+    # # Color the legend text to match the line color
+    # for handle, label in zip(leg.legendHandles, leg.texts):
+    #     label.set_color(handle.get_color())
+        
     # ax.add_artist(leg)
     # ax.set_axis_off()
     # ax.axis('equal')
@@ -1403,7 +1403,7 @@ def plotDensity(SIM, ax, ioconfig):
     ax2 = ax.twinx()
     # ax.set_yscale('log')
     ax2.set_yscale('log')
-    ax2.set_ylim([1E0, 5*1E5])
+    ax2.set_ylim([1E1, 5*1E5])
     ax2.set_ylabel(r'$v_A$ ($kms^{-1}$)', fontsize=10)
     # ax2.plot( xaxis, B, lw=2., alpha=0.7, ls='-', label = 'B strength', color=ax2color)
     ax2.plot( xaxis, vA, lw=2., alpha=0.7, ls='-', label = r'$v_A$ ($kms^{-1}$)', color=ax2color)
@@ -1672,12 +1672,12 @@ def plotConfigSubplots(SIMS, fieldlines, ioconfig, under=None):
     plt.show()
 #-----------------------------------------------------------------------------
 
-def plotSubplots(SIMS, fieldlines, ioconfig):
+def plotSubplots(SIMS, fieldlines, ioconfig, plotData='vA'):
     # fig, axes = plt.subplots(2, 2, figsize=(6,8))
     SIM = SIMS[0]
     plt.close('all')
     # fig = plt.figure(num=None, figsize=(8.5, 4.5), dpi=80, facecolor='black', edgecolor='k')
-    fig = plt.figure(num=None, facecolor='black')
+    fig = plt.figure(num=None, figsize=(10, 7), dpi=150, facecolor='black')
 
     ax1 = plt.subplot(221)
     ax2 = plt.subplot(222)
@@ -1688,37 +1688,39 @@ def plotSubplots(SIMS, fieldlines, ioconfig):
 
     plotSolutionsPub(SIMS[0], fig, ax4, ioconfig, plotVar='b')
 
-    plotConfiguration(SIMS, ax1, fieldlines=fieldlines, plotData='bratio', ioconfig=ioconfig)
+    plotConfiguration(SIMS, ax1, fieldlines=fieldlines, plotData=plotData, ioconfig=ioconfig)
 
-    plotEigenfrequenciesPub(SIMS, ax2, ioconfig)
+    plotEigenfrequenciesPub(SIMS, ioconfig, ax=ax2)
 
     # plotDensity(SIMS[0], ax4, ioconfig)
-    B = SIM.Bfun(SIM.z) * 1E9
-    n = SIM.nfun(SIM.z) * 1E-6
-    vA = SIM.vAfun(SIM.z) * 1E-3
-    dz = SIM.z[1] - SIM.z[0]
-    T = dz / (vA * 1E3)
-    T=np.cumsum(T)
-    Tin = 0.
-    if any(n > 0.1):
-        nindices = np.where(n > 0.1)
-        nindices0 = nindices[0][0]
-        nindices1 = nindices[0][-1]
-        T0 = T[nindices0]
-        T1 = T[nindices1]
-        Tin = T1 - T0
-    Tout = T[-1] - Tin
-    ax5 = fig.add_axes([0.1, 0.04, 0.2, 0.08])
-    plotSmallAxes(ax5, [Tin/60., Tout/60.])
+    # B = SIM.Bfun(SIM.z) * 1E9
+    # n = SIM.nfun(SIM.z) * 1E-6
+    # vA = SIM.vAfun(SIM.z) * 1E-3
+    # dz = SIM.z[1] - SIM.z[0]
+    # T = dz / (vA * 1E3)
+    # T=np.cumsum(T)
+    # Tin = 0.
+    # if any(n > 0.1):
+    #     nindices = np.where(n > 0.1)
+    #     nindices0 = nindices[0][0]
+    #     nindices1 = nindices[0][-1]
+    #     T0 = T[nindices0]
+    #     T1 = T[nindices1]
+    #     Tin = T1 - T0
+    # Tout = T[-1] - Tin
+    # ax5 = fig.add_axes([0.1, 0.04, 0.2, 0.08])
+    # plotSmallAxes(ax5, [Tin/60., Tout/60.])
 
-    ax6 = fig.add_axes([0.35, 0.04, 0.2, 0.08])
+    ax6 = fig.add_axes([0.1, 0.06, 0.37, 0.15])
     plotDensity(SIM, ax6, ioconfig)
 
     title = findTitleInfoString(SIMS[0], type="KMAGfull")
-    fig.suptitle(title, fontsize=14, color='white', x=0.8, y=0.08)
+    # fig.suptitle(title, fontsize=12, color='white', alpha=0.5, x=0.8, y=0.08)
+    fig.suptitle(title, fontsize=12, color='white', alpha=0.5, x=0.5, y=0.99)
     fig.tight_layout()
-    # plt.subplots_adjust(bottom=0.15, wspace=0.3, hspace=0.2)
-    plt.subplots_adjust(bottom=0.2)
+    # plt.subplots_adjust(wspace=0.4, hspace=0.4)
+    plt.subplots_adjust(bottom=0.3)
+    plt.subplots_adjust(top=0.94)
     # fig.tight_layout(pad=0)
     # plt.show()
     # plt.savefig('Output/pic.png')
@@ -1856,8 +1858,8 @@ def plotEigenfrequenciesPub(SIMS,
             filename2 = "PoloidalDay"
         L1, th1, w1 = loadEigenfrequencies(filename=filename1)
         L2, th2, w2 = loadEigenfrequencies(filename=filename2)
-        plotEigenfrequenciesFieldLineLength(ax, th1,  w1, plotAgainst=plotAgainst, plotStyle='-', plotAlpha=0.6, plotWeight=2.8, labelPrefix='Toroidal Day | ')
-        plotEigenfrequenciesFieldLineLength(ax, th2,  w2, plotAgainst=plotAgainst, plotStyle='--', plotAlpha=0.6, plotWeight=2., labelPrefix='Poloidal Day | ')
+        plotEigenfrequenciesFieldLineLength(ax, th1,  w1, plotAgainst=plotAgainst, plotStyle='-', plotAlpha=0.8, plotWeight=2., markerSize=0, labelPrefix='Toroidal Day | ')
+        plotEigenfrequenciesFieldLineLength(ax, th2,  w2, plotAgainst=plotAgainst, plotStyle='--', plotAlpha=0.8, plotWeight=2., markerSize=0, labelPrefix='Poloidal Day | ')
 
     # Fixed for reference
     ax.set_yscale('log')
@@ -1944,10 +1946,10 @@ def plotEigenfrequenciesPub(SIMS,
     # cmap = plt.cm.coolwarm
     # color=cmap(0.)
     custom_lines = [Line2D([0], [0], color=color, ls='-', lw=2., alpha=1.),
-                    Line2D([0], [0], color=color, ls='--',  lw=2., alpha=0.5)]
-    # leg2 = ax.legend(custom_lines, ['Toroidal Mode', 'Poloidal Mode'], loc="upper center", prop={'size': 11}, framealpha=0.2)
-    # for text in leg2.get_texts():
-        # plt.setp(text, color = color)
+                    Line2D([0], [0], color=color, ls='--',  lw=2., alpha=0.85)]
+    leg2 = ax.legend(custom_lines, ['Toroidal Mode', 'Poloidal Mode'], loc="upper left", prop={'size': 10}, framealpha=0.1)
+    for text in leg2.get_texts():
+        plt.setp(text, color = color)
 
     # ax.xaxis.grid(True, which='minor')
     # ax.grid()
@@ -1956,45 +1958,45 @@ def plotEigenfrequenciesPub(SIMS,
     # ax2.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
     
     # Bottom Second Axis for Equatorial Crossing Distance
-    # ax3 = ax.twiny()
-    # ax3.set_xlim([64,76.5])
+    ax3 = ax.twiny()
+    ax3.set_xlim([64,76.5])
 
-    # # Add some extra space for the second axis at the bottom
-    # plt.subplots_adjust(bottom=0.2)
+    # Add some extra space for the second axis at the bottom
+    plt.subplots_adjust(bottom=0.2)
 
-    # # Move twinned axis ticks and label from top to bottom
-    # ax3.xaxis.set_ticks_position("bottom")
-    # ax3.xaxis.set_label_position("bottom")
+    # Move twinned axis ticks and label from top to bottom
+    ax3.xaxis.set_ticks_position("bottom")
+    ax3.xaxis.set_label_position("bottom")
 
-    # # Offset the twin axis below the host
-    # ax3.spines["bottom"].set_position(("axes", -0.15))
+    # Offset the twin axis below the host
+    ax3.spines["bottom"].set_position(("axes", -0.15))
 
-    # # Turn on the frame for the twin axis, but then hide all 
-    # # but the bottom spine
-    # ax3.set_frame_on(True)
-    # ax3.patch.set_visible(False)
+    # Turn on the frame for the twin axis, but then hide all 
+    # but the bottom spine
+    ax3.set_frame_on(True)
+    ax3.patch.set_visible(False)
 
-    # # as @ali14 pointed out, for python3, use this
-    # for sp in ax3.spines.values():
-    # # and for python2, use this
-    # # for sp in ax3.spines.itervalues():
-    #     sp.set_visible(False)
-    # ax3.spines["bottom"].set_visible(True)
+    # as @ali14 pointed out, for python3, use this
+    for sp in ax3.spines.values():
+    # and for python2, use this
+    # for sp in ax3.spines.itervalues():
+        sp.set_visible(False)
+    ax3.spines["bottom"].set_visible(True)
 
-    # #Night
-    # if meridian=='night':
-    #     LAT_labels = [74.73, 74.08, 73.35, 71.86, 66.44, 63.59]
-    #     L_labels = [30,20,15,10,5,4]
-    # #Day
-    # if meridian=='day':
-    #     LAT_labels = [75.63,74.08,71.97,66.32,63.59]
-    #     L_labels = [20,15,10,5 ,4]
-    # ax3.set_xticks(LAT_labels)
-    # ax3.tick_params(axis='x', colors=color)
-    # ax3.spines['bottom'].set_color(color)
-    # ax3.set_xticklabels(L_labels)
-    # ax3.set_xlabel(r"Equatorial Crossing Distance  ($R_S$)", fontsize=14, color=color)
-    # plt.tight_layout()
+    #Night
+    if meridian=='night':
+        LAT_labels = [74.73, 74.08, 73.35, 71.86, 66.44, 63.59]
+        L_labels = [30,20,15,10,5,4]
+    #Day
+    if meridian=='day':
+        LAT_labels = [75.63,74.08,71.97,66.32,63.59]
+        L_labels = [20,15,10,5 ,4]
+    ax3.set_xticks(LAT_labels)
+    ax3.tick_params(axis='x', colors=color)
+    ax3.spines['bottom'].set_color(color)
+    ax3.set_xticklabels(L_labels)
+    ax3.set_xlabel(r"Equatorial Crossing Distance  ($R_S$)", fontsize=14, color=color)
+    plt.tight_layout()
 
 
     # figconf.render(fig, ioconfig)

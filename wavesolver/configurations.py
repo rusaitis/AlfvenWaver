@@ -89,9 +89,9 @@ configBasicSolve = {"fun": fde,
                     "BC": [0.0, 0.0],
                     "dydz": [1.0, 0.5],
                     "wRes": 100,
-                    "res": 100,
+                    "res": 150,
                     "modes": 3,
-                    "tol": 1E-5,
+                    "tol": 1E-5/2,
                     "method": 'LSODA'}  # 'RK45','BDF','LSODA'
 
 # ----------------------------------------------------------------------------
@@ -172,7 +172,8 @@ Saturn = {"units": RS,
 #
 # ----------------------------------------------------------------------------
 batchNominal = [{"Dp": 0.017}]
-# batchTH = [{"PHI": 0., "TH": th} for th in np.linspace(14.5, 30., 100)]
+batchTH = [{"PHI": 0., "TH": th} for th in np.linspace(14.5, 30., 3)]
+batchL = [{"PHI":180., "R": R} for R in np.linspace(4, 19., 1)]
 # batchTH = [{"PHI": 0., "TH": th} for th in np.linspace(15.5, 27., 2)]
 # batchTH = [{"PHI": 0., "TH": th} for th in np.linspace(20.5, 30., 3)]
 # batchz0 = [{"PHI": 0., "TH": 17.5, "z0": z0} for z0 in
